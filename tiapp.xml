@@ -39,6 +39,25 @@
                 <string>
                     App would like to access your location information. This let's know when you enter or leave a bubble.
                 </string>
+                <key>CFBundleURLTypes</key>
+                <array>
+                    <dict>
+                        <key>CFBundleURLName</key>
+                        <!-- Application ID same as the id value in the tiapp.xml file -->
+                        <string>com.ci.myapp</string>
+                        <key>CFBundleURLSchemes</key>
+                        <array>
+                            <!-- Prefix the Facebook App ID with 'fb' -->
+                            <string>fb1694515444111183</string>
+                        </array>
+                    </dict>
+                </array>
+                <key>FacebookAppID</key>
+                <!-- Facebook App ID -->
+                <string>1694515444111183</string>
+                <key>FacebookDisplayName</key>
+                <!-- Facebook App Name from developer.facebook.com -->
+                <string>ChatApp</string>
             </dict>
         </plist>
     </ios>
@@ -52,8 +71,13 @@
         <theme>default</theme>
     </mobileweb>
     <modules>
-        <module platform="iphone">com.tentie.geofencing</module>
         <module platform="iphone">ti.map</module>
+        <module platform="iphone">ti.imagefactory</module>
+        <module platform="iphone">facebook</module>
+        <module platform="iphone">ti.coremotion</module>
+        <module platform="iphone">de.marcelpociot.collectionview</module>
+        <module platform="iphone">com.tentie.tableviewswiperecognizer</module>
+        <module platform="iphone">it.smc.dakeyboardcontrol</module>
     </modules>
     <deployment-targets>
         <target device="android">false</target>
@@ -61,7 +85,7 @@
         <target device="iphone">true</target>
         <target device="mobileweb">false</target>
     </deployment-targets>
-    <sdk-version>4.1.0.GA</sdk-version>
+    <sdk-version>4.0.0.GA</sdk-version>
     <plugins>
         <plugin version="1.0">ti.alloy</plugin>
     </plugins>

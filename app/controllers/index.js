@@ -1,10 +1,62 @@
-function doClick(e) {
-    alert($.label.text);
+var webService = require("webService");
+ // call this function on first load
+//$.toolbar.unload(); // call this function when window blurred
+//$.toolbar.reload(); // call this function when window focussed
+
+function toolbarToggle(e) {
+    $.lv.bottom = e.height + 56;
+}
+
+function toolbarResize(e) {
+    $.lv.bottom = e.height + 56 + 12 + 12;
+}
+fetchRandomUsers();
+function fetchRandomUsers()
+{
+	var webService = require("webService");
+	webService.getRandomUsers().then(function(data){
+		var listViewItems = [];
+		data.results.forEach(function(object){
+			var user = object.user;
+			var name = user.name.first;
+			var  image = user.picture.medium;
+			
+			var item = {
+				properties :{
+					data:  user
+				},
+				imageView: {
+					image:image
+				},
+				nickNameLabel:{
+					text: name
+				}
+			};
+			
+		 listViewItems.push(item);
+			
+		});
+		
+		$.listSection.insertItemsAt(0, listViewItems);
+		
+		
+	}, function(error){
+		console.log(error);
+	});
+
 }
 
 
+function getUsersInCurrentRegion()
+{
+	
+}
 
-
+function startGeofenceMonitor()
+{
+	
+}
+/*
 var Map = require('ti.map');
 var geofencing = require("com.tentie.geofencing");
 
@@ -89,11 +141,11 @@ Titanium.Geolocation.getCurrentPosition(function(e){
 });
 
 
-/*
+
 Titanium.Geolocation.addEventListener("location", function(e){
 	console.log(e);
 });
-*/
+
 
 var region1 = {
 	latitude: 38.925609,
@@ -117,6 +169,25 @@ function loaded(e)
 }
 
 mapview.addEventListener("complete", loaded);
-$.index.open();
+*/
 
+$.navWindow.open();
+
+$.messagesButton.addEventListener("click", function(){
+	var conversationWin = Alloy.createController("conversation").getView();
+	conversationWin.open({modal: true});
+});
+
+function didClickListItem(e)
+{
+	
+}
+
+
+//$.index.open();
+
+
+
+//var loginWin = Alloy.createController("login" ).getView();
+//loginWin.open({modal: true});
 

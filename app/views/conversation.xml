@@ -1,0 +1,10 @@
+<Alloy>
+	<NavigationWindow id="navWindow">
+		<Window id="rootWindow">
+			<LeftNavButton>
+				<Button id="backButton">Back</Button>
+			</LeftNavButton>
+			<TableView id="tableView"></TableView>
+		</Window>
+	</NavigationWindow>
+</Alloy>

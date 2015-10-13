@@ -1,5 +1,12 @@
-".container": {
-	backgroundColor:"white"
+
+"#rootWindow" : {
+	barColor: "#4B598A",
+	title: "ChatApp",
+	titleAttributes:{
+		color: "#FFF488"
+	},
+	backgroundColor: "#F0EFF4"
+	//navTintColor: "#FFF488"
 }
 
 "Label": {
@@ -8,8 +15,47 @@
 	color: "#000"
 }
 
-"#label": {
-	font: {
-		fontSize: 12
-	}
+"#usersViewContainer":{
+	width: Titanium.UI.FILL,
+	height: Titanium.UI.FILL
+}
+
+"#listView":{
+	width: "95%",
+	top: "3%",
+	backgroundColor: "#F0EFF4",
+	showVerticalScrollIndicator: false
+}
+
+"#template":{
+	width: Alloy.Globals.itemScreenWidth,
+	height: Alloy.Globals.itemScreenHeight
+}
+
+
+"#viewContainer":{
+	width: Titanium.UI.FILL,
+	height: Titanium.UI.FILL,
+	layout: "vertical",
+	//borderWidth: 1
+}
+
+
+"#imageView":{
+	height: Alloy.Globals.itemImageSize,
+	width: Alloy.Globals.itemImageSize,
+	borderRadius: Alloy.Globals.itemImageRadius,
+	borderWidth: 2,
+	borderColor: "white",
+}
+
+
+"#nickNameLabel":{
+	width: "85%",
+	//backgroundColor: "brown",
+	height: Alloy.Globals.itemLabelHeight,
+	top: 5,
+	color: "#4B598A",
+	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
+	//borderWidth: 1
 }

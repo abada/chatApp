@@ -1,12 +1,19 @@
 {
-	"global": {},
-	"env:development": {},
-	"env:test": {},
-	"env:production": {},
-	"os:android": {},
-	"os:ios": {},
-	"os:mobileweb": {},
-	"os:windows": {},
-	"dependencies": {
-	}
+  "global": {
+    "NULL_REGION": "NULL_REGION",
+    "LKD_REGION": "LKD_REGION",
+    "SOB_REGION": "SOB_REGION",
+    "YARD_REGION": "YARD_REGION",
+    "TOWERS_REGION": "TOWERS_REGION"
+  },
+  "env:development": {},
+  "env:test": {},
+  "env:production": {},
+  "os:android": {},
+  "os:ios": {},
+  "os:mobileweb": {},
+  "os:windows": {},
+  "dependencies": {
+    "com.imobicloud.keyboardtoolbar": "1.0"
+  }
 }

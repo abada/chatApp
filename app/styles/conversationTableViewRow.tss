@@ -1,0 +1,70 @@
+
+"#row":{
+	width: Titanium.UI.FILL,
+	height: Titanium.UI.SIZE,
+	selectionStyle: "none"
+}
+
+".viewWrapper":{
+	width: Titanium.UI.FILL,
+	height: Titanium.UI.SIZE,
+	layout: "horizontal"
+}
+
+"#partnerProfilePicture":{
+	left: 10,
+	top: 10,
+	width: 40,
+	height: 40,
+	borderRadius: 20,
+	backgroundColor: "red"
+}
+".container":{
+	width: "77%",
+	height: Titanium.UI.SIZE,
+	layout: "vertical",
+	left:10,
+	top: 10,
+	borderWidth: 1
+}
+
+".topView":{
+	width: Titanium.UI.FILL,
+	height: Titanium.UI.SIZE
+}
+
+"#partnerNickNameLabel":{
+	
+	height: Titanium.UI.SIZE,
+	width: "70%",
+	text: "Lobos",
+	font: {
+		fontSize: 18,
+		fontWeight: "bold"
+	},
+	left: 0,
+	textAlighn: "left"
+}
+
+
+"#lastMessageTimeLabel":{
+	width: "30%",
+	height: Titanium.UI.SIZE,
+	font: {
+		fontSize: 14,
+	},
+	right: 0,
+	text: "20m ago",
+	textAlign: "right"
+}
+
+"#lastMessageLabel":{
+	width: Titanium.UI.FILL,
+	height: 40,
+	text: "This is a sample preview message that is supped to be very long so we can study the effects",
+	font: {
+		fontSize: 14,
+	},
+	top: 5,
+	bottom: 10
+}

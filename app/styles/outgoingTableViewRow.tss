@@ -1,0 +1,45 @@
+
+
+"#row":{
+	width: Titanium.UI.FILL,
+	height: Titanium.UI.SIZE,
+	selectionStyle: "none",
+	layout: "vertical"
+}
+".outgoing":{
+	width: 15,
+	height: 15,
+	tintColor: "#FFF488",
+	image: "/images/Arrow-right",
+	left:-6
+}
+"#textLabel":{
+	textAlign: "left",
+	font: {
+		fontSize: 15
+	},
+	top: 7,
+	bottom: 7,
+	left: 7,
+	right:5,
+	color: "#4B598A"
+
+}
+"#viewContainer":{
+	width: Titanium.UI.SIZE,
+	height: Titanium.UI.SIZE,
+	layout: "horizontal",
+	right: 10
+}
+
+"#labelContainer":{
+	width: Titanium.UI.SIZE,
+	height: Titanium.UI.SIZE,
+	borderRadius: 5,
+	backgroundColor: "#FFF488"
+}
+
+"#topPadding":{
+	width: Titanium.UI.FILL,
+	height: 20
+}

@@ -1,0 +1,11 @@
+<Alloy>
+	<TableViewRow id="row">
+		<View id="topPadding"></View>
+		<View id="viewContainer">
+			<View id="labelContainer">
+				<Label id= "textLabel" width="auto" height="auto"></Label>
+			</View>	
+			<Button id="imageButton" class="outgoing"></Button>
+		</View>
+	</TableViewRow>
+</Alloy>

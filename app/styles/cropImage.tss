@@ -1,0 +1,12 @@
+
+".container" : {
+  backgroundColor: "black"
+}
+
+"#areaToCrop":{
+	width: Alloy.Globals.Device.width,
+	height: Alloy.Globals.Device.width,
+	borderColor: "white",
+	borderWidth: 2,
+	borderRadius: Alloy.Globals.Device.halfWidth
+}

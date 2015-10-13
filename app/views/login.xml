@@ -1,0 +1,23 @@
+<Alloy>
+	<Window id="rootWindow">
+		<ScrollView id="scrollView">
+			<View id="topView">
+				<Label id="headerLabel"></Label>
+				<Label id="subHeaderLabel"></Label>
+
+			</View>
+			<TableView id="fieldsTable">
+				<TableViewRow>
+					<TextField id="emailField" hintText="Email"></TextField>
+				</TableViewRow>
+				<TableViewRow>
+					<TextField id="passwordField" hintText="Password"></TextField>
+					<Button id="forgotPassword"></Button>
+				</TableViewRow>
+			</TableView>
+			<Button id="createAccount"></Button>
+			<Button id="fbLoginButton"></Button>
+			<View id="flexSpace" height="50"></View>
+		</ScrollView>
+		</Window>
+</Alloy>

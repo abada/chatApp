@@ -1,0 +1,14 @@
+<Alloy>
+	<TableViewRow id="row">
+		<View class="viewWrapper">
+			<ImageView id="partnerProfilePicture"></ImageView>
+			<View class="container">
+				<View class="topView">
+				<Label id="partnerNickNameLabel"></Label>
+					<Label id="lastMessageTimeLabel"></Label>
+				</View>
+				<Label id="lastMessageLabel"></Label>
+			</View>
+		</View>
+	</TableViewRow>
+</Alloy>

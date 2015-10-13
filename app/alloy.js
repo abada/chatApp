@@ -1,11 +1,15 @@
-// The contents of this file will be executed before any of
-// your view controllers are ever executed, including the index.
-// You have access to all functionality on the `Alloy` namespace.
-//
-// This is a great place to do any initialization for your app
-// or create any global variables/functions that you'd like to
-// make available throughout your app. You can easily make things
-// accessible globally by attaching them to the `Alloy.Globals`
-// object. For example:
-//
-// Alloy.Globals.someGlobalFunction = function(){};
+Alloy.Globals.Device = {
+	version : Ti.Platform.version,
+	width : Ti.Platform.displayCaps.platformWidth,
+	height : Ti.Platform.displayCaps.platformHeight,
+	dpi : Ti.Platform.displayCaps.dpi,
+	defaultWindowHeight: Ti.Platform.displayCaps.platformHeight - 80
+};
+var heightPadding = 37;
+Alloy.Globals.itemScreenWidth = (Alloy.Globals.Device.width/3) - 15;
+Alloy.Globals.itemScreenHeight = (Alloy.Globals.itemScreenWidth) + heightPadding;
+Alloy.Globals.itemImageSize = Math.floor(Alloy.Globals.itemScreenWidth - 10);
+Alloy.Globals.itemImageRadius = Math.floor(Alloy.Globals.itemImageSize/2);
+Alloy.Globals.itemLabelHeight = 20;
+console.log("Size is " + Alloy.Globals.itemImageSize);
+console.log("Radius is " + Alloy.Globals.itemImageRadius);

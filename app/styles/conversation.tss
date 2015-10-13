@@ -1,0 +1,21 @@
+"#tableView":{
+	width: Titanium.UI.FILL,
+	height: Titanium.UI.FILL,
+	separatorInsets: {
+		left: 0,
+		right: 0
+	}
+}
+
+"#rootWindow" : {
+	barColor: "#4B598A",
+	title: "Messages",
+	titleAttributes:{
+		color: "white",
+		font: {
+			fontSize: 25
+		}
+	},
+	navTintColor: "#FFF488"
+}
+

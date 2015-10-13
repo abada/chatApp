@@ -1,0 +1,67 @@
+<h1>TiDAKeyboardControl Module</h1>
+<h2>Description</h2>
+<p>Do you want to create a perfect clone of the iMessage compose interface? <strong><em>Fear no more!</em></strong> You can now respond to keyboard events (show, hide and interactive changes) and customize how much space will be used as an offset during interactive panning.</p>
+<p>Titanium SDK wrapper for the awesome <a href="https://github.com/danielamitay/DAKeyboardControl">DAKeyboardControl</a> from <a href="http://danielamitay.com">@danielamitay</a>! (iOS only)</p>
+<h2>Accessing the TiDAKeyboardControl Module</h2>
+<p>What you have to do is just install the module, nothing more!</p>
+<p>Thanks to the native implementation using Objective-C categories to extend classes, TiDAKeyboardControl Module does not need the <strong>require( )</strong> method to access the module from JavaScript.</p>
+<h2>Usage</h2>
+<h3>Properties</h3>
+<ul>
+<li>
+<p><code>keyboardTriggerOffset</code>: <em>number</em>, 
+How much space must be took on top of the keyboard.</p>
+</li>
+<li>
+<p><code>keyboardPanning</code>: <em>number</em>, This activates the panning feature.</p>
+</li>
+<li><code>lockedViews</code>: <em>[View]</em>, Automatically add the specified View as a locked view.</li>
+</ul>
+<p>An extensive example can be found in <code>example/app.js</code>, the following one just acts as an overview.
+To clear up every doubts please read <a href="../example/README.md">this</a>.</p>
+<p>```js</p>
+<p>var textarea = Ti.UI.createTextArea({
+    right: 0,
+    bottom: 0,
+    left: 0,
+    scrollable: false,
+    suppressReturn: false,
+    height: Ti.UI.SIZE,
+});</p>
+<p>var window = Ti.UI.createWindow({
+    keyboardTriggerOffset: 0,
+    keyboardPanning: true,
+    lockedViews: [ textarea ]
+});</p>
+<p>window.addEventListener('close', function (event) {
+    // Very important! Releases what needs to be released
+    event.source.keyboardPanning = false;
+});</p>
+<p>window.add(textarea);</p>
+<p>// The window is now the host for keyboard events
+window.addEventListener('keyboardchange', function (event) {
+    Ti.API.error("Notification of keyboard change: y=" + event.y + " height="+event.height);
+});</p>
+<p>// Multiline text-area
+textarea.addEventListener('postlayout', function (event) {
+    window.keyboardTriggerOffset = event.source.rect.height;
+});</p>
+<p>window.open();
+```</p>
+<h2>Author</h2>
+<p>Kudos to @danielamitay for the development of DAKeyboardControl.</p>
+<p>Humbly made by the spry ladies and gents at SMC.</p>
+<h2>License</h2>
+<p>This library, <em>TiDAKeyboardControl</em>, is free software ("Licensed Software"); you can
+redistribute it and/or modify it under the terms of the <a href="http://www.gnu.org/licenses/lgpl-2.1.html">GNU Lesser General
+Public License</a> as published by the
+Free Software Foundation; either version 2.1 of the License, or (at your
+option) any later version.</p>
+<p>This library is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; including but not limited to, the implied warranty of MERCHANTABILITY,
+NONINFRINGEMENT, or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General
+Public License for more details.</p>
+<p>You should have received a copy of the <a href="http://www.gnu.org/licenses/lgpl-2.1.html">GNU Lesser General Public
+License</a> along with this library; if
+not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth
+Floor, Boston, MA 02110-1301 USA</p>

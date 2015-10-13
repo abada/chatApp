@@ -1,0 +1,103 @@
+
+".container" : {
+  
+}
+
+"#headerLabel":{
+	font: {
+		fontSize: 35
+	},
+	text: "Chat App",
+	color: "#FFF488"
+}
+
+"#subHeaderLabel":{
+	top: "5dp",
+	font: {
+		fontSize: 15
+	},
+	text: "Connect with your circle",
+	color: "#FFF488"
+}
+
+"#rootWindow" : {
+	//barColor: "#4B598A",
+	//title: "Signup"
+}
+
+"#scrollView":{
+	layout: "vertical",
+	backgroundColor: "#4B598A"
+	//backgroundColor: "#525A8B"
+
+}
+
+"#topView":{
+	top: "80dp",
+	width: Titanium.UI.SIZE,
+	height: Titanium.UI.SIZE,
+	layout: "vertical"
+}
+
+"TableView":{
+	width: "80%",
+	top : "40dp",
+	height: 99,
+	borderRadius: 8,
+	separatorInsets:{
+		left: 0,
+		 right: 0
+	},
+	scrollable: false
+}
+
+"TableViewRow":{
+	height: 50,
+	selectionStyle: "none",
+	
+}
+
+
+"TextField":{
+	height: Titanium.UI.FILL,
+	width: Titanium.UI.FILL,
+	backgroundColor: "white",
+	paddingLeft: 10,
+	font: {
+		fontSize: 17
+	}
+}
+
+"#passwordField":{
+	width: "70%",
+	left: 0
+}
+
+"#forgotPassword":{
+	right: "4%",
+	title: "FORGOT?",
+	font: {
+		fontSize: 12
+	},
+	color: "#4B598A",
+	width: "25%"
+}
+
+
+"#createAccount":{
+	top: "15dp",
+	font: {
+		fontSize: 17
+	},
+	color: "white",
+	title: "Create Account"
+}
+
+"#fbLoginButton":{
+	top: "30dp",
+	width: "80%",
+	height: 50,
+	backgroundColor: "#FFF488",
+	color: "#4B598A",
+	title: "Sign in with Facebook",
+}

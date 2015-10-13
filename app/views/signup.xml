@@ -1,0 +1,36 @@
+<Alloy>
+	<NavigationWindow id="navWindow">
+		<Window id="rootWindow">
+			<LeftNavButton>
+				<Button id="leftNavButton" class="navButton">Cancel</Button>
+			</LeftNavButton>
+			<RightNavButton>
+				<Button id="rightNavButton" class="navButton">Done</Button>
+			</RightNavButton>
+			<ScrollView id="scrollView">
+				<View id="topView">
+					<Button id="cameraButton"></Button>
+					<ImageView id="profilePictueImageView"></ImageView>
+				</View>
+				<TableView id="fieldsTable">
+					<TableViewRow>
+						<TextField id="firstNameField" hintText="First Name"></TextField>
+					</TableViewRow>
+					<TableViewRow>
+						<TextField id="lastNameField" hintText="Last Name"></TextField>
+					</TableViewRow>
+					<TableViewRow>
+						<TextField id="nickNameField" hintText="Nick name"></TextField>
+					</TableViewRow>
+					<TableViewRow>
+						<TextField id="emailField" hintText="Email"></TextField>
+					</TableViewRow>
+					<TableViewRow>
+						<TextField id="passwordField" hintText="Password"></TextField>
+					</TableViewRow>
+				</TableView>
+				<View id="flexSpace" height="50"></View>
+			</ScrollView>
+		</Window>
+	</NavigationWindow>
+</Alloy>

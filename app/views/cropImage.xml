@@ -1,0 +1,15 @@
+<Alloy>
+	<NavigationWindow id="navWindow">
+		<Window id="rootWindow">
+			<LeftNavButton>
+				<Button id="leftNavButton">Back</Button>
+			</LeftNavButton>
+			<RightNavButton>
+				<Button id="rightNavButton">Done</Button>
+			</RightNavButton>
+			<ImageView id="imageView" borderWidth="3" borderColor="red">
+			</ImageView>
+			<View id="areaToCrop"></View>
+		</Window>
+	</NavigationWindow>
+</Alloy>
