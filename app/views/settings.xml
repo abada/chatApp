@@ -1,0 +1,45 @@
+<Alloy>
+	<NavigationWindow id="navWindow">
+		<Window id="rootWindow">
+			<LeftNavButton>
+				<Button id="backButton">Back</Button>
+			</LeftNavButton>
+			<RightNavButton>
+				<Button id="saveButton">Save</Button>
+			</RightNavButton>
+			<ScrollView id="scrollView" contentHeight="auto" width="100%" scrollType="vertical" layout="vertical">
+				<View width="Ti.UI.FILL" height="40%">
+					<View id="backgroundView">
+						<ImageView id="backgroundImageView" width="FILL" height="130%" zIndex="1" backgroundColor="red"></ImageView>
+					</View>
+					<View width="Ti.UI.FILL" height="Ti.UI.FILL" layout="vertical">
+						<ImageView id="imageView" width="100" height="100" borderWidth="2" borderRadius="50" borderColor="white" top="30"></ImageView>
+						<Label id="nickNameLabel" top="12"></Label>
+					</View>
+				</View>
+				<TableView id="fieldsTable">
+					<TableViewRow>
+						<TextField id="firstNameField" hintText="First Name"></TextField>
+					</TableViewRow>
+					<TableViewRow>
+						<TextField id="lastNameField" hintText="Last Name"></TextField>
+					</TableViewRow>
+					<TableViewRow>
+						<TextField id="nickNameField" hintText="Nick name"></TextField>
+					</TableViewRow>
+					<TableViewRow>
+						<TextField id="emailField" hintText="Email"></TextField>
+					</TableViewRow>
+					<TableViewRow>
+						<View layout="horizontal" width="FILL" height="FILL">
+							<Label id="region" height="FILL" left="10">Current Vicinity:</Label>
+							<Label id="regionValue" height="FILL">Howard Manor</Label>
+						</View>
+					</TableViewRow>
+				</TableView>
+				<Label id="logoutButton" width="100%" textAlign="center" color="red" height="50" borderWidth="1" borderColor="lightgray" backgroundColor="white" top="30">Logout</Label>
+				<View height="30"></View>
+			</ScrollView>
+		</Window>
+	</NavigationWindow>
+</Alloy>

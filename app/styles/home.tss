@@ -1,0 +1,65 @@
+
+"#rootWindow" : {
+	barColor: "#4B598A",
+	title: "ChatApp",
+	titleAttributes:{
+		color: "#FFF488"
+	},
+	backgroundColor: "#F0EFF4"
+	//navTintColor: "#FFF488"
+}
+
+"Label": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	color: "#000"
+}
+
+"#usersViewContainer":{
+	width: Titanium.UI.FILL,
+	height: Titanium.UI.FILL,
+	backgroundColor: "#D9383838"
+}
+
+"#listView":{
+	width: "95%",
+	top: "3%",
+	backgroundColor: "transparent",
+	showVerticalScrollIndicator: false
+}
+
+"#template":{
+	width: Alloy.Globals.itemScreenWidth,
+	height: Alloy.Globals.itemScreenHeight
+}
+
+
+"#viewContainer":{
+	width: Titanium.UI.FILL,
+	height: Titanium.UI.FILL,
+	layout: "vertical",
+	//backgroundColor: "#99383838"
+	//borderWidth: 1
+}
+
+
+"#imageView":{
+	height: Alloy.Globals.itemImageSize,
+	width: Alloy.Globals.itemImageSize,
+	borderRadius: Alloy.Globals.itemImageRadius,
+	//borderWidth: 2,
+	//borderColor: "white",
+}
+
+
+"#nickNameLabel":{
+	width: "85%",
+	//backgroundColor: "brown",
+	height: Alloy.Globals.itemLabelHeight,
+	top: 5,
+	//color: "#4B598A",
+	color: "white",
+	textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
+	//backgroundColor: "#99383838"
+	//borderWidth: 1
+}

@@ -1,0 +1,16 @@
+<Alloy>
+	<NavigationWindow id="navWindow">
+	<Window id="rootWindow">
+		<ScrollView id="scrollView">
+			<View id="topView">
+				<Label id="headerLabel"></Label>
+				<Label id="subHeaderLabel"></Label>
+			</View>
+			<Button id="emailLoginButton"></Button>
+			<Button id="fbLoginButton"></Button>
+			<Button id="createAccount"></Button>
+			<View id="flexSpace" height="50"></View>
+		</ScrollView>
+		</Window>
+		</NavigationWindow>
+</Alloy>

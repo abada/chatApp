@@ -1,0 +1,13 @@
+<Alloy>
+	<Window id="rootWindow" layout="vertical">
+		<View width="Ti.UI.FILL" height="40%">
+			<View id="backgroundView">
+				<ImageView id="backgroundImageView" width="FILL" height="130%" zIndex="1"></ImageView>
+			</View>
+			<View width="Ti.UI.FILL" height="Ti.UI.FILL" layout="vertical">
+				<ImageView id="imageView" width="100" height="100" borderWidth="2" borderRadius="50" borderColor="white" top="30"></ImageView>
+				<Label id="nickNameLabel" top="12"></Label>
+			</View>
+		</View>
+	</Window>
+</Alloy>

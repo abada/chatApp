@@ -1,27 +1,6 @@
 <Alloy>
-	<NavigationWindow id="navWindow">
-		<Window id="rootWindow" class="container">
-			<LeftNavButton>
-				<Button id="settingsButton">Settings</Button>
-			</LeftNavButton>
-			<RightNavButton>
-				<Button id="messagesButton">Messages</Button>
-			</RightNavButton>
-			<View id="mapViewContainer"></View>
-			<View id="usersViewContainer">
-				<ListView id="listView" defaultItemTemplate="template" module="CollectionView" method="createCollectionView" onItemclick="didClickListItem">
-					<Templates>
-						<ItemTemplate name="template" id="template">
-							<View id="viewContainer">
-								<ImageView id="imageView" bindId="imageView"></ImageView>
-								<Label id="nickNameLabel" bindId="nickNameLabel" ></Label>
-							</View>
-						</ItemTemplate>
-					</Templates>
-					<ListSection id="listSection" module="de.marcelpociot.collectionview" method="createCollectionSection"></ListSection>
-				</ListView>
-				
-			</View>
-		</Window>
-	</NavigationWindow>
+	<Window id="index" class="container" backgroundColor="red">
+		<View backgroundColor="red">
+		</View>
+	</Window>
 </Alloy>

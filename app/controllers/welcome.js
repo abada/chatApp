@@ -3,34 +3,30 @@ var webService = require("webService");
 var fb = require('facebook');
  fb.permissions = ["public_profile", "email"];
  fb.appid = "1694515444111183";
+fb.addEventListener('logout', fbLogoutCallback);
 
-$.rightNavButton.addEventListener("click", loginUser);
-$.leftNavButton.addEventListener("click", closeWindow);
+
+$.createAccount.addEventListener("click", function(){
+	var signupWin = Alloy.createController("signup").getView();
+	signupWin.open({modal: true});
+});
+
+$.emailLoginButton.addEventListener("click", function(){
+	var loginWin = Alloy.createController("login", {
+		didFinishLogin:function(){
+			loginWin.close({animated: false});
+			args.finishLogin();
+		}, completeSignup:function(data){
+			loginWin.close({animated: false});
+			completeSignup(data);
+		}
+	}).getView();
+	$.navWindow.openWindow(loginWin);
+});
+
+
+
 $.fbLoginButton.addEventListener("click", loginWithFacebook);
-
-
-function closeWindow()
-{
-	$.rootWindow.close();
-}
-function loginUser()
-{
-	var email = $.emailField.value;
-	var password = $.passwordField.value;
-	
-	if (email.length == 0 || password.length == 0)
-	{
-		alert("Please enter your email and password first");
-		return;
-	}
-	
-	webService.login({username: email, password: password}).then(function(e){
-		args.didFinishLogin();
-	}, function(error){
-		alert("Invalid email or password, please try again");
-	});
-}
-
 
 function loginWithFacebook()
 {
@@ -81,6 +77,7 @@ function fbLoginCallback(e)
     }
 }
 
+
 function getFBAuthStatus(accessToken)
 {
 	 webService.getAuthStatus(accessToken).then(function(result){
@@ -88,7 +85,7 @@ function getFBAuthStatus(accessToken)
     	console.log(result);
     	if (!result.isRegisteredUser)
     	{
-    		args.completeSignup(result);
+    		completeSignup(result);
     	}
     	else
     	{
@@ -106,10 +103,30 @@ function getFBAuthStatus(accessToken)
 function loginWithAuthCredentials(email, userId)
 {
 	webService.loginWithAuthCredentials ({authUserEmail: email, authUserId:userId}).then(function(){
-		args.didFinishLogin();
+		args.finishLogin();
 	}, function(error){
 		alert("Something wrong happened, please try again");
 		console.log(error);
 	});
 }
 
+
+
+function completeSignup(data)
+{
+	
+	var signupWin = Alloy.createController("signup", {fbUserData: data, cancelCallback: signupCancelCallback, didFinishLogin:function(){
+			signupWin.close({animated: false});
+			args.finishLogin();
+		}}).getView();
+	signupWin.open({modal: true});
+}
+
+
+function signupCancelCallback()
+{
+	if (fb.loggedIn)
+	{
+		fb.logout();
+	}
+}

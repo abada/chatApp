@@ -1,0 +1,73 @@
+<h1>TiUIVisualEffectsView Module</h1>
+<p>The project allows you to use UIVisualEffectsView on iOS8 (native iOS blur and vibrancy effect). 
+<img alt="Image" src="../assets/activity.png" />
+<img alt="Image" src="../assets/views_.png" /></p>
+<h2>Before you start</h2>
+<ul>
+<li>This is an iOS native module designed to work with Titanium SDK 3.4.0+</li>
+<li>This will only work with iOS <b>8</b> or greater</li>
+</ul>
+<h2>Download the compiled release</h2>
+<ul>
+<li><a href="* [dist](https://github.com/artanisdesign/TiUIVisualEffectView/tree/master/dist)">dist</a></li>
+</ul>
+<h2>or build from source</h2>
+<p>If you are building from source you will need to do the following:</p>
+<p>Import the project into Xcode:</p>
+<ul>
+<li>Modify the titanium.xcconfig file with the path to your Titanium installation</li>
+<li>When running this project from Xcode you might run into a compile issue. If this is the case you will need to update the titanium.xcconfig to include your username. See the below for an example:</li>
+</ul>
+<p>~~~
+TITANIUM_SDK = /Users/Artanis/Library/Application Support/Titanium/mobilesdk/osx/$(TITANIUM_SDK_VERSION)
+~~~</p>
+<p>Import the project into Eclipse:</p>
+<ul>
+<li>Update the .classpath</li>
+<li>Update the build properties</li>
+</ul>
+<h2>Setup</h2>
+<ul>
+<li>Download the latest release from the dist folder ( or you can build it yourself )</li>
+<li>Install the module. If you need help here is a "How To" <a href="https://wiki.appcelerator.org/display/guides/Configuring+Apps+to+Use+Modules">guide</a>. </li>
+<li>You can now use the module via the commonJS require method, example shown below.</li>
+</ul>
+<h2>Accessing the TiUIVisualEffectsView Module</h2>
+<p>To access this module from JavaScript, you would do the following:</p>
+<pre><code>var UIBlurView = require("com.artanisdesign.uivisualeffect");
+</code></pre>
+<p>The UIBlurView variable is a reference to the Module object.</p>
+<h2>How to use</h2>
+<p>Take a look on the example.js </p>
+<h2>Usage</h2>
+<p>~~~
+var proxy2 = UIBlurView.createView({
+    effect : "light", //extralight, dark
+    width : Ti.UI.FILL,
+    height : 150,
+    top : 200,
+    left : 0
+});
+~~~</p>
+<h2>Known issues</h2>
+<p>It's not recommended to add view directly to the blurred view (just use it as a background layer). It's not using the UIVisualEffectsView contentView property yet. Until it's not fixed, vibrancyEffect is not available either. </p>
+<p>Please feel to free to contribute and help me override the default "add" function. </p>
+<h2>Author</h2>
+<p>Artanis, Gergely Cziva, info@artanisdesign.eu, Twitter:  <a href="https://twitter.com/_artanis_" title="_artanis_">@_ artanis _</a></p>
+<h2>License</h2>
+<p>The MIT License (MIT)</p>
+<p>Copyright (c) 2014 Gergely Cziva, Artanis</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of
+ this software and associated documentation files (the "Software"), to deal in
+ the Software without restriction, including without limitation the rights to
+ use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+ the Software, and to permit persons to whom the Software is furnished to do so,
+ subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>

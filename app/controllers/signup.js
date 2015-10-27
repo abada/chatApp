@@ -90,7 +90,7 @@ function addProfilePicture()
 		autoHide: true,
 		allowEditing: true,
 		cancel: function(e){
-			
+	
 		},
 		error: function(e){
 			

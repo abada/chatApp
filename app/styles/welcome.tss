@@ -1,0 +1,66 @@
+
+"#rootWindow":{
+	navBarHidden: true,
+	fullscreen: true
+}
+
+"#headerLabel":{
+	font: {
+		fontSize: 35
+	},
+	text: "Chat App",
+	color: "#FFF488"
+}
+
+"#subHeaderLabel":{
+	top: "5dp",
+	font: {
+		fontSize: 15
+	},
+	text: "Connect with your circle",
+	color: "#FFF488"
+}
+
+
+"#scrollView":{
+	layout: "vertical",
+	backgroundColor: "#4B598A"
+	//backgroundColor: "#525A8B"
+
+}
+
+"#topView":{
+	top: 80,
+	width: Titanium.UI.SIZE,
+	height: Titanium.UI.SIZE,
+	layout: "vertical"
+}
+
+
+"#createAccount":{
+	top: "10dp",
+	font: {
+		fontSize: 17
+	},
+	color: "white",
+	title: "Create Account"
+}
+
+"#emailLoginButton":{
+	
+	top: 200,
+	width: "80%",
+	height: 50,
+	backgroundColor: "#FFF488",
+	color: "#4B598A",
+	title: "Login with email",
+}
+
+"#fbLoginButton":{
+	top: "10dp",
+	width: "80%",
+	height: 50,
+	backgroundColor: "#FFF488",
+	color: "#4B598A",
+	title: "Login with Facebook",
+}

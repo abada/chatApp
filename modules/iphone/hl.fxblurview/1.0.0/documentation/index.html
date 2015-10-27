@@ -1,0 +1,32 @@
+<h1>Titanium FXBlurView Module</h1>
+<p>This is module is a thin wrapper around Nick Lockwood's <a href="https://github.com/nicklockwood/FXBlurView">FXBlurView</a>, with one addition,
+cross-fading when the blurred layer is updated. </p>
+<h2>Supported properties</h2>
+<ul>
+<li><strong>blurRadius</strong>, values below 4 tend to look bad</li>
+<li><strong>blurSource</strong>, the Titanium View or Window to use as blur source </li>
+<li><strong>blurTintColor</strong>, defaults to the tintColor of <em>blurSource</em> (can be set to <code>'transparent'</code>)</li>
+<li><strong>blurIterations</strong>, higher values supposedly give better results </li>
+<li><strong>blurInterval</strong>, the refresh interval in seconds (defaults to 5)</li>
+<li><strong>blurEnabled</strong>, defaults to true</li>
+</ul>
+<h2>Usage</h2>
+<p>```
+var blur = require('HL.FXBlurView'),
+    view = blur.createBlurView({ 
+      blurRadius: 10, 
+      blurSource: win, 
+      blurTintColor: 'green', 
+      blurInterval: 1,
+      zIndex: 10 
+    });</p>
+<p>win.add(view);
+```</p>
+<h2>Changes</h2>
+<p><strong>1.0.0</strong> 
+- Initial release</p>
+<h2>Authors</h2>
+<p><strong>Jonatan Lundin</strong><br />
+Web: http://hyperlab.se<br />
+Twitter: @mr_lundis<br />
+</p>

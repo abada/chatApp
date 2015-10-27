@@ -4,7 +4,13 @@
     "LKD_REGION": "LKD_REGION",
     "SOB_REGION": "SOB_REGION",
     "YARD_REGION": "YARD_REGION",
-    "TOWERS_REGION": "TOWERS_REGION"
+    "TOWERS_REGION": "TOWERS_REGION",
+    "STATUSAUTHORIZED": "Authorized",
+    "STATUSNOTDETERMINED": "NotDetermined",
+    "STATUSDENIED": "Denied",
+    "STATUSAUTHORIZEDWHENINUSE": "AuthorizedWhenInUse",
+    "STATUSRESTRICTED": "Restricted",
+    "STATUSUNDENFINED": "undefined"
   },
   "env:development": {},
   "env:test": {},

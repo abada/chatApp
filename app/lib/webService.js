@@ -1,7 +1,13 @@
-       var baseUrl = "http://8e690a22.ngrok.io/api/v1";
 var Q = require("q");
 
-exports.createUser = function(_params)
+
+var WebService = function()
+{
+	this.baseUrl = "http://8f90c1c6.ngrok.io/api/v1";
+};
+
+
+WebService.prototype.createUser = function(_params)
 {
 	var data = {
 		url: "/user",
@@ -9,83 +15,114 @@ exports.createUser = function(_params)
 		params:_params
 	};
 	
-	return makeHttpRequest("signup", data);	
+	return this.makeHttpRequest("signup", data);	
 };
 
-
-exports.loginUser = function(_params)
+WebService.prototype.login = function(_params)
 {
 	var data = {
 		url : "/user/login",
 		method: "POST",
 		params: _params
 	};
-	return makeHttpRequest("login", data);
+	return this.makeHttpRequest("login", data);
 };
 
-exports.getAuthStatus = function(_accessToken)
+WebService.prototype.loginWithAuthCredentials = function(_params)
+{
+	var data = {
+		url : "/user/login/auth",
+		method: "POST",
+		params: _params
+	};
+	return this.makeHttpRequest("login", data);
+};
+
+WebService.prototype.getAuthStatus = function(_accessToken)
 {
 	var data = {
 		url : "/user/authstatus/" + _accessToken,
 		method: "GET"
 	};
-	return makeHttpRequest("getAuthStatus", data);
+	return this.makeHttpRequest("getAuthStatus", data);
 };
 
+WebService.prototype.loggedIn = function()
+{
+	//console.log("Session token is " + Ti.App.Properties.getString('parseSessionToken'));
+	return Ti.App.Properties.hasProperty('parseSessionToken');
+};
+
+WebService.prototype.logout = function()
+{
+	Ti.App.Properties.removeProperty('parseSessionToken');
+	Ti.App.Properties.removeProperty('parseUser');
+}; 
 
 
-exports.uploadImage = function(_params)
+WebService.prototype.uploadImage = function(_params)
 {
 	var data = {
 		url : "/media/image",
 		method: "POST",
 		params: _params
 	};
-	return makeHttpRequest("uploadImage", data);
+	return this.makeHttpRequest("uploadImage", data);
 };
 
-exports.getRandomUsers = function()
+
+WebService.prototype.getUsersInRegion = function(_regionIdentifier)
+{
+	var data = {
+		url : "/user/region/" + _regionIdentifier,
+		method: "GET"
+	};
+	return this.makeHttpRequest("getUsers", data);
+};
+
+
+WebService.prototype.getRandomUsers = function()
 {
 	var data = {
 		url : "http://api.randomuser.me/?results=20",
 		method: "GET"
 	};
-	return makeHttpRequest("getRandomUsers", data);
+	return this.makeHttpRequest("getRandomUsers", data);
 };
 
-exports.createConversation = function(_params)
+WebService.prototype.createConversation = function(_params)
 {
 	var data = {
 		url : "/conversation",
 		method: "POST",
 		params: _params
 	};
-	return makeHttpRequest("createConversation", data);
+	return this.makeHttpRequest("createConversation", data);
 };
 
 
-exports.addMessageToConversation = function(_params)
+WebService.prototype.addMessageToConversation = function(_params)
 {
 	var data = {
 		url : "/conversation/messages",
 		method: "POST",
 		params: _params
 	};
-	return makeHttpRequest("addMessageToConversation", data);
+	return this.makeHttpRequest("addMessageToConversation", data);
 };
 
-exports.getMessagesFromConversationWithId = function(_conversationId)
+WebService.prototype.getMessagesFromConversationWithId = function(_conversationId)
 {
 	var data = {
 		url : "/conversation/"+ _conversationId + "/messages",
 		method: "GET"
 	};
-	return makeHttpRequest("getMessagesFromConversationWithId", data);
+	return this.makeHttpRequest("getMessagesFromConversationWithId", data);
 };
 
 
 
-function makeHttpRequest(_action, _data)
+WebService.prototype.makeHttpRequest = function(_action, _data)
 {
 	var deferred = Q.defer();
 	var url;
@@ -95,7 +132,7 @@ function makeHttpRequest(_action, _data)
 	}
 	else
 	{
-		url = baseUrl + _data.url;
+		url = this.baseUrl + _data.url;
 	}
 	//var url = baseUrl + _data.url;
 	var client = Ti.Network.createHTTPClient({
@@ -154,4 +191,7 @@ function makeHttpRequest(_action, _data)
 	 }
 	 
 	 return deferred.promise;
-}
+};
+
+var webService = new WebService();
+module.exports = webService;

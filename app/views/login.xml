@@ -1,10 +1,17 @@
 <Alloy>
 	<Window id="rootWindow">
+		<LeftNavButton>
+				<Button id="leftNavButton" class="navButton">Cancel</Button>
+			</LeftNavButton>
+			<RightNavButton>
+				<Button id="rightNavButton" class="navButton">Done</Button>
+			</RightNavButton>
 		<ScrollView id="scrollView">
-			<View id="topView">
-				<Label id="headerLabel"></Label>
-				<Label id="subHeaderLabel"></Label>
-
+			<Button id="fbLoginButton"></Button>
+			<View class="separatorView">
+				<View class="separator" left="0"></View>
+				<Label class="separatorLabel">OR</Label>
+				<View class="separator" right="0"></View>
 			</View>
 			<TableView id="fieldsTable">
 				<TableViewRow>
@@ -15,8 +22,6 @@
 					<Button id="forgotPassword"></Button>
 				</TableViewRow>
 			</TableView>
-			<Button id="createAccount"></Button>
-			<Button id="fbLoginButton"></Button>
 			<View id="flexSpace" height="50"></View>
 		</ScrollView>
 		</Window>

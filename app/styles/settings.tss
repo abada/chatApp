@@ -1,0 +1,57 @@
+"#rootWindow" : {
+	barColor: "#4B598A",
+	title: "Profile",
+	titleAttributes:{
+		color: "white",
+		font: {
+			fontSize: 25
+		}
+	},
+	navTintColor: "#FFF488",
+	backgroundColor: "#E6E6E6",
+	layout: "vertical" 
+}
+
+
+
+"#nickNameLabel":{
+	color: "white",
+	font: {
+		fontSize: 22,
+		fontWeight: "bold"
+	},
+	width: "70%",
+	height: Titanium.UI.SIZE,
+	text: "Sammy",
+	textAlign: "center"
+}
+
+
+"TableView":{
+	//width: "80%",
+	//top : "30dp",
+	height: 249,
+
+	separatorInsets:{
+		left: 0,
+		 right: 0
+	},
+	scrollable: false,
+	width: "FILL",
+	borderWidth: 1,
+	borderColor: "lightgray"
+}
+
+"TableViewRow":{
+	height: 50,
+	selectionStyle: "none",
+
+}
+
+
+"TextField":{
+	height: Titanium.UI.FILL,
+	width: Titanium.UI.FILL,
+	backgroundColor: "white",
+	paddingLeft: 10
+}
