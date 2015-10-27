@@ -39,7 +39,7 @@
 	backgroundColor: "#FFF488"
 }
 
-"#topPadding":{
+".padding":{
 	width: Titanium.UI.FILL,
-	height: 20
+	height: 8
 }

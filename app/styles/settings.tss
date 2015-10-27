@@ -13,6 +13,10 @@
 }
 
 
+"#rootView":{
+	backgroundColor: "#E6E6E6",
+}
+
 
 "#nickNameLabel":{
 	color: "white",

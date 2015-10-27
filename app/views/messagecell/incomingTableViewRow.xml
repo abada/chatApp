@@ -1,11 +1,12 @@
 <Alloy>
 	<TableViewRow id="row">
-		<View id="topPadding"></View>
+		<View class="padding"></View>
 		<View id="viewContainer">
 			<Button id="imageButton" class="incoming"></Button>
 			<View id="labelContainer">
 				<Label id= "textLabel" width="auto" height="auto"></Label>
 			</View>	
 		</View>
+		<View class="padding"></View>
 	</TableViewRow>
 </Alloy>

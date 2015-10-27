@@ -10,16 +10,28 @@ var proxy2 = UIBlurView.createView({
     zIndex: 1
 });
 
+
+setNavButtonListeners();
+
+function setNavButtonListeners()
+{
+	if(args.didSetOnLeftClick)
+	{
+		args.onLeftClick(function(){
+			Alloy.Globals.pageFlow.back();
+		});
+	}
+}
+
+
 //$.backgroundImageView.image = args.image;
 //$.imageView.image = args.image;
 //$.nickNameLabel = args.name;
 $.backgroundView.add(proxy2);
-$.backButton.addEventListener("click", function(){
-	$.navWindow.close();
-});
 
 
 $.logoutButton.addEventListener("click", function(){
-	$.navWindow.close({animated: false});
+	//$.navWindow.close({animated: false});
+	//Alloy.Globals.pageFlow.back();
 	args.didClickLogout();
 });

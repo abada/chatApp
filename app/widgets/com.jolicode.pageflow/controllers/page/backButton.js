@@ -1,8 +1,8 @@
 var properties = arguments[0];
 
-_.each(properties.properties, function(value, key) {
-    $.button[key] = value;
-});
+if (properties.properties.backgroundImage) {
+    $.button.backgroundImage = properties.properties.backgroundImage;
+}
 
 $.button.title = properties.properties.title || L('back');
 $.button.addEventListener('click', properties.properties.callback || function(e) {

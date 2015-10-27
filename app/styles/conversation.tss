@@ -7,15 +7,10 @@
 	}
 }
 
-"#rootWindow" : {
-	barColor: "#4B598A",
-	title: "Messages",
-	titleAttributes:{
-		color: "white",
-		font: {
-			fontSize: 25
-		}
-	},
-	navTintColor: "#FFF488"
+
+"#rootView":{
+	backgroundColor: "lightgray",
+	width: Ti.UI.FILL,
+	height: Titanium.UI.FILL
 }
 

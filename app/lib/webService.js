@@ -90,6 +90,17 @@ WebService.prototype.getRandomUsers = function()
 	return this.makeHttpRequest("getRandomUsers", data);
 };
 
+WebService.prototype.listConversations = function (_userId)
+{
+	var data = {
+		url : "/conversation/" + _userId,
+		method: "GET"
+	};
+	return this.makeHttpRequest("listConversations", data);
+};
+
+
+
 WebService.prototype.createConversation = function(_params)
 {
 	var data = {

@@ -1,5 +1,5 @@
 <Alloy>
-	<Window id="rootWindow" layout="vertical">
+	<View id="rootView" layout="vertical">
 		<View width="Ti.UI.FILL" height="40%">
 			<View id="backgroundView">
 				<ImageView id="backgroundImageView" width="FILL" height="130%" zIndex="1"></ImageView>
@@ -9,5 +9,25 @@
 				<Label id="nickNameLabel" top="12"></Label>
 			</View>
 		</View>
-	</Window>
+		<View class="separator"></View>
+		<View class="viewContainer" top="50">
+			<View class="separator"></View>
+			<View width="FILL" height="SIZE">
+				<Label class="button" id="messageButton">Send Message</Label>
+			</View>
+		</View>
+		<View class="viewContainer" top="0">
+			<View class="separator"></View>
+			<View width="FILL" height="SIZE">
+				<Label class="button" id="pokeButton">Poke</Label>
+			</View>
+		</View>
+		<View class="viewContainer" top="0">
+			<View class="separator"></View>
+			<View width="FILL" height="SIZE">
+				<Label class="button" id="blockButton">Block</Label>
+			</View>
+		</View>
+		<View class="separator"></View>
+	</View>
 </Alloy>

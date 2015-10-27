@@ -20,7 +20,7 @@
 	backgroundColor: "red"
 }
 ".container":{
-	width: "77%",
+	width: "81%",
 	height: Titanium.UI.SIZE,
 	layout: "vertical",
 	left:10,

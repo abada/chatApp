@@ -1,0 +1,19 @@
+
+".container" : {
+  width: "100%",
+  height: Titanium.UI.FILL
+  //height: "88dp"
+  //height: "108dp"
+}
+
+"#titleLabel":{
+	width:Ti.UI.SIZE,
+	height:Ti.UI.SIZE,
+	font:{
+		fontSize: 27
+	},
+	color: "white",
+	bottom: "5dp",
+	//borderWidth: 1
+	//backgroundColor: "blue"
+}

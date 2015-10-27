@@ -1,4 +1,17 @@
 <Alloy>
-	<View class="container">
+	<View id="rootView" class="container">
+		<View id="messageViewContainer">
+			<View id="mainView" class="mainView">
+				<TableView id="tableView" class="messagesTableView">
+					<FooterView>
+						<View height="15"></View>
+					</FooterView>
+				</TableView>
+			</View>
+			<View id="textAreaContainer">
+				<TextArea id="textArea"></TextArea>
+				<Button id="sendButton"></Button>
+			</View>
+		</View>
 	</View>
 </Alloy>

@@ -1,0 +1,17 @@
+
+".container" : {
+  width: Titanium.UI.SIZE,
+  height: Titanium.UI.FILL,
+}
+
+"#button":{
+	width: Titanium.UI.SIZE,
+	height: Titanium.UI.SIZE,
+	font:{
+		fontSize: 19
+	},
+	color: "white",
+	left: 10,
+	bottom: "5dp",
+	//borderWidth: 1
+}

@@ -1,6 +1,6 @@
 ".com.jolicode.pageflow.navBar": {
     backgroundColor: '#FFFF',
-    height: 44,
+    height: "60dp",
     top: 0
 },
 ".com.jolicode.pageflow.navBar.center": {

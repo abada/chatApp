@@ -52,6 +52,8 @@ var pageflow = {
 
         // add the page at the right position
         $.pageflow.add(newPageView);
+        console.log(newPageView.rect.x + '/' + newPageView.rect.y + '/' + newPageView.rect.width + '/' + newPageView.rect.height);
+        console.log(newPageView.size.width + '/' + newPageView.size.height);
 
         // animate the pageflow in the right direction
         var currentPageId = pageflow.getCurrentPageId();
@@ -200,7 +202,7 @@ var pageflow = {
     },
 
     getPage: function(page) {
-        return pageflow.hasPage(page) ? pageflow.pages[page] : null;
+        return pageflow.pages[page] ? pageflow.pages[page] : null;
     },
 
     getPageGridPosition: function(page) {
@@ -230,10 +232,6 @@ var pageflow = {
             pageflow.removeLastPage(first, pageflow.pages.length == page + 2);
             first = false;
         }
-    },
-
-    hasPage: function(page) {
-        return (pageflow.pages[page] !== undefined);
     },
 
     initialize: function() {
@@ -285,30 +283,16 @@ var pageflow = {
         if (callPrePostShow && currentPage){
             currentPage.postShow();
         }
-    },
-
-    /**
-     * Replaces the page at a given position
-     */
-    replacePage: function(page, properties) {
-        if (pageflow.hasPage(page)) {
-            page = pageflow.getPage(page);
-            page.replace(properties);
-        }
-    },
+    }
 };
 
-// initialize stuff
+
 pageflow.initialize();
 
-// expose widget's public API
 exports.addChild = pageflow.addChild;
 exports.back = pageflow.back;
 exports.clear = pageflow.clear;
 exports.countPages = pageflow.countPages;
 exports.getCurrentPage = pageflow.getCurrentPage;
 exports.getCurrentPageView = pageflow.getCurrentPageView;
-exports.getPage = pageflow.getPage;
-exports.getPageView = pageflow.getPageView;
 exports.gotoPage = pageflow.gotoPage;
-exports.replacePage = pageflow.replacePage;

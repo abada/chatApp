@@ -8,6 +8,14 @@ for (var i = 10; i > 0; i--)
 
 $.tableView.data = data;
 
-$.backButton.addEventListener("click", function(){
-	$.navWindow.close();
-});
+setNavButtonListeners();
+
+function setNavButtonListeners()
+{
+	if(args.didSetOnLeftClick)
+	{
+		args.onLeftClick(function(){
+			Alloy.Globals.pageFlow.back();
+		});
+	}
+}

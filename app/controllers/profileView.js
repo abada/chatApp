@@ -15,3 +15,37 @@ $.backgroundImageView.image = args.image;
 $.imageView.image = args.image;
 $.nickNameLabel = args.name;
 $.backgroundView.add(proxy2);
+
+
+setNavButtonListeners();
+function setNavButtonListeners()
+{
+	if(args.didSetOnLeftClick)
+	{
+		args.onLeftClick(function(){
+			Alloy.Globals.pageFlow.back();
+		});
+	}
+}
+
+
+$.messageButton.addEventListener("click", showMessage);
+
+
+function showMessage()
+{
+	Alloy.Globals.openWindow({
+		name: "messages",
+		arguments: {
+			data: args.data
+		},
+		navBarTitle: "Messages",
+		left :{
+			title : 'Back'
+		},
+		direction:{
+			top: 1,
+			left: 0
+		}
+	});
+}

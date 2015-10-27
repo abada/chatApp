@@ -1,6 +1,5 @@
 <Alloy>
 	<Window id="index" class="container" backgroundColor="red">
-		<View backgroundColor="red">
-		</View>
+		<Widget src="com.jolicode.pageflow" id="pageflow"></Widget>
 	</Window>
 </Alloy>

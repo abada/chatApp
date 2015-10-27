@@ -10,7 +10,11 @@
     "STATUSDENIED": "Denied",
     "STATUSAUTHORIZEDWHENINUSE": "AuthorizedWhenInUse",
     "STATUSRESTRICTED": "Restricted",
-    "STATUSUNDENFINED": "undefined"
+    "STATUSUNDENFINED": "undefined",
+    "LEAVINGREGION": "leaving_region",
+    "ENTEREDREGION": "entered_region",
+    "EXITEDREGION": "exited_region",
+    "MONITORINGREGION": "monitoring_region"
   },
   "env:development": {},
   "env:test": {},
@@ -20,6 +24,8 @@
   "os:mobileweb": {},
   "os:windows": {},
   "dependencies": {
-    "com.imobicloud.keyboardtoolbar": "1.0"
+    "com.imobicloud.keyboardtoolbar": "1.0",
+    "com.jolicode.pageflow": "1.3"
   }
 }
+

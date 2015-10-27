@@ -1,17 +1,11 @@
-"#rootWindow" : {
-	barColor: "#4B598A",
-	title: "Profile",
-	titleAttributes:{
-		color: "white",
-		font: {
-			fontSize: 25
-		}
-	},
-	navTintColor: "#FFF488",
+
+
+"#rootView":{
+	width: Titanium.UI.FILL,
+	height: Titanium.UI.FILL,
 	backgroundColor: "#E6E6E6",
 	layout: "vertical" 
 }
-
 
 
 "#nickNameLabel":{
@@ -24,4 +18,30 @@
 	height: Titanium.UI.SIZE,
 	text: "Sammy",
 	textAlign: "center"
+}
+
+
+".button":{
+	width: Ti.UI.FILL,
+	height: 45,
+	backgroundColor: "white",
+	textAlign: "center",
+	font: {
+		fontSize: 20,
+	},
+	//text: "Send Message",
+	color: "#4B598A"
+}
+
+".separator":{
+	width: Titanium.UI.FILL,
+	height: 1,
+	backgroundColor: "lightgray"
+}
+
+
+".viewContainer":{
+	width: "FILL",
+	height: "SIZE",
+	layout: "vertical"
 }

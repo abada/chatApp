@@ -4,13 +4,28 @@ var Map = require('ti.map');
 var geofencing = require("com.tentie.geofencing");
 var mapview;
 var region1 = {
-	latitude: 38.925609,
-	longitude: -77.022353,
-	title: "Howard manor region",
-	radius: 40
+	latitude: 38.921495,
+	longitude: -77.021509,
+	title: "test",
+	radius: 50
 };
 
-getUsersInCurrentRegion();
+
+setNavButtonListeners();
+
+function setNavButtonListeners()
+{
+	if(args.didSetOnLeftClick)
+	{
+		args.onLeftClick(showSettings);
+	}
+	
+	if (args.didSetOnRightClick)
+	{
+		args.onRightClick(showConversations);
+	}
+}
+
 
 
 checkPermission();
@@ -36,8 +51,8 @@ function initialize()
 {
 	
 	var howardManor = Map.createAnnotation({
-	    latitude:38.925609,
-	    longitude:-77.022353,
+	    latitude: 38.921495,
+		longitude: -77.021509,
 	    title:"Howard Manor",
 	    pincolor:Map.ANNOTATION_RED,
 	    myid:1 // Custom property to uniquely identify this annotation.
@@ -45,7 +60,7 @@ function initialize()
 	
 	mapview = Map.createView({
 	    mapType: Map.HYBRID_TYPE,
-	    region: {latitude: 38.925609, longitude: -77.022353},
+	    region: {latitude: 38.921495, longitude: -77.021509},
 	    animate:true,
 	    regionFit:true,
 	    userLocation:true,
@@ -54,15 +69,15 @@ function initialize()
 	});
 	
 	var circle = Map.createCircle({
-	    center: { latitude: 38.925609, longitude: -77.022353},
-	    radius: 40, //1km
+	    center: { latitude: 38.921495, longitude: -77.021509},
+	    radius: 50, //1km
 	    fillColor: "#80FF0000",
 	    strokeWidth: 2,
 	    strokeColor: "#80FF0000"
 	});
 	var circle1 = Map.createCircle({
 	    center: { latitude: 38.925609, longitude: -77.022353},
-	    radius: 45, //1km
+	    radius: 50, //1km
 	    fillColor: "#80d3d3d3",
 	    strokeWidth: 2,
 	    strokeColor: "#80FF0000"
@@ -77,9 +92,9 @@ function initialize()
 	});
 	
 	
-	mapview.addCircle(circle1);
+	//mapview.addCircle(circle1);
 	mapview.addCircle(circle);
-	mapview.addCircle(circle2);
+	//mapview.addCircle(circle2);
 	$.mapViewContainer.add(mapview);
 	
 	
@@ -97,10 +112,10 @@ function initialize()
 
 
 
-function getUsersInCurrentRegion()
+function getUsersInCurrentRegion(region)
 {
 	var webService = require("webService");
-	webService.getUsersInRegion("test").then(function(data){
+	webService.getUsersInRegion(region).then(function(data){
 		var listViewItems = [];
 		try{
 				data.forEach(function(user){
@@ -147,8 +162,27 @@ function startGeofenceMonitor()
 
 function regionMonitorCallback(e)
 {
-	console.log("Region monitoring returned");
-	alert(e.type + " : " + e.identifier);
+	console.log("*****************  Region monitoring returned *********************");
+	console.log(e.type + " : " + e.identifier);
+	if (e.type == Alloy.CFG.ENTEREDREGION)
+	{
+		console.log("I was triggered fetching users now");
+		//$.usersViewContainer.visible = true;
+		//getUsersInCurrentRegion(e.identifier);
+		
+		
+		Alloy.Globals.conversationCenter.fetchConversations(false).then(function(result){
+			console.log(result);
+		}, function(error){
+			console.log(error);
+		});
+		
+		
+	}
+	else if (e.type == Alloy.CFG.EXITEDREGION)
+	{
+		$.usersViewContainer.visible = false;
+	}
 }
 
 function loaded(e)
@@ -158,7 +192,7 @@ function loaded(e)
 	geofencing.startGeofencing([region1], regionMonitorCallback);
 }
 
-
+/*
 $.messagesButton.addEventListener("click", function(){
 	var conversationWin = Alloy.createController("conversation").getView();
 	conversationWin.open({modal: true});
@@ -170,12 +204,65 @@ $.settingsButton.addEventListener("click", function(){
 	settingsWin.open({modal: true});
 });
 
+*/
+
+function showConversations()
+{
+	Alloy.Globals.openWindow({
+		name: "conversation",
+		arguments: {},
+		navBarTitle: "Messages",
+		left :{
+			title : 'Back'
+		},
+		direction:{
+			top: 1,
+			left: 0
+		}
+	});
+	
+}
+
+
+function showSettings()
+{
+	Alloy.Globals.openWindow({
+		name: "settings",
+		arguments: {},
+		navBarTitle: "Settings",
+		navBarColor: "#4B598A",
+		left :{
+			title : 'Close'
+		},
+		right :{
+			title : 'Save'
+		},
+		direction:{
+			top: 1,
+			left: .5
+		}
+	});
+}
 
 
 function didClickListItem(e)
 {
-	//console.log(e);
 	var item = $.listSection.getItemAt(e.itemIndex);
-	var profileViewWin = Alloy.createController("profileView", {image: item.imageView.image, name: item.nickNameLabel.text}).getView();
-	$.navWindow.openWindow(profileViewWin);
+	console.log("Item is " + JSON.stringify(item));
+	Alloy.Globals.openWindow({
+		name: "profileView",
+		arguments: {
+			data: item,
+			image: item.imageView.image, name: item.nickNameLabel.text
+		},
+		navBarTitle: "Profile",
+		left :{
+			title : 'Back'
+		},
+		direction:{
+			top: 0,
+			left: 1
+		}
+	});
+	
 }
