@@ -29,15 +29,31 @@ function setNavButtonListeners()
 }
 
 
-$.messageButton.addEventListener("click", showMessage);
+$.messageButton.addEventListener("click", showMessageView);
 
 
-function showMessage()
+function showMessageView()
 {
+	
+	var isNewMessage;
+	var conversationId = null;
+	if (Alloy.Globals.conversationCenter.isNewConversation(args.user.objectId))
+	{
+		isNewMessage = true;
+		console.log("New message");
+	}
+	else
+	{
+		isNewMessage = false;
+		console.log("Not new message");
+	}
+	
+	
 	Alloy.Globals.openWindow({
 		name: "messages",
 		arguments: {
-			data: args.data
+			partner: args.user,
+			isNewMessage: isNewMessage
 		},
 		navBarTitle: "Messages",
 		left :{

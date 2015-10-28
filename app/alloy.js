@@ -23,8 +23,9 @@ Alloy.Globals.jolicode.pageflow.width = Ti.Platform.displayCaps.platformWidth;
 var webService = require("webService");
 Alloy.Globals.webService = webService;
 var Q = require("q");
+Alloy.Globals.Q = Q;
 
-
+var maxFetchRetries = 3;
 /**
  * navBarTitle
  * left.title, left.onClick
@@ -106,7 +107,16 @@ Alloy.Globals.openWindow = function (_params)
 };
 
 Alloy.Globals.conversationCenter = {};
+Alloy.Globals.conversationCenter.messageStore = {};
 Alloy.Globals.conversationCenter.hasFetchedConversations = false;
+
+
+function sortConversationsByDate()
+{
+	
+}
+
+
 function fetchConversations(_refresh)
 {
 	var deferred = Q.defer();
@@ -125,6 +135,7 @@ function fetchConversations(_refresh)
 	{
 		Alloy.Globals.conversationCenter.hasFetchedConversations = false;
 		Alloy.Globals.conversationCenter.conversations = [];
+		Alloy.Globals.conversationCenter.messageStore = {};
 		fetch();
 	}
 	
@@ -132,7 +143,22 @@ function fetchConversations(_refresh)
 	function fetch()
 	{
 		var currentUser = Ti.App.Properties.getObject('parseUser');
+		console.log(currentUser);
 		webService.listConversations(currentUser.objectId).then(function(result){
+			
+			
+			result.forEach(function(conversation){
+				if (!Alloy.Globals.conversationCenter.messageStore[conversation.objectId])
+				{
+					Alloy.Globals.conversationCenter.messageStore[conversation.objectId] = {
+						hasNewMessage: false,
+						hasFetchedMessages: false,
+						messageList : []
+					};
+				}
+				
+			});
+			
 			Alloy.Globals.conversationCenter.conversations = result;
 			Alloy.Globals.conversationCenter.hasFetchedConversations = true;
 			deferred.resolve(Alloy.Globals.conversationCenter.conversations);
@@ -147,26 +173,73 @@ function fetchConversations(_refresh)
 	
 }
 
-function createConversation(_partnerUserId)
+function getMessagesInConversation(_conversationId)
 {
 	var deferred = Q.defer();
-	if (!_partnerUserId)
+	if (!Alloy.Globals.conversationCenter.messageStore[_conversationId].hasFetchedMessages)
 	{
-		deferred.reject({message: "Invalid partnerId"});
+		
+		webService.getMessagesFromConversationWithId(_conversationId).then(function(messages){
+			
+			Alloy.Globals.conversationCenter.messageStore[_conversationId].messageList = messages;
+			Alloy.Globals.conversationCenter.messageStore[_conversationId].hasFetchedMessages = true;
+			deferred.resolve(messages);
+			
+		}, function(error){
+			
+			console.log("Error fetching messages in conversation with id:" + _conversationId + " error: " + JSON.stringify(error));
+			deferred.reject(error);
+		});
+	}
+	else
+	{
+		deferred.resolve(Alloy.Globals.conversationCenter.messageStore[_conversationId].messageList);
+	}
+	
+	return deferred.promise;
+}
+
+function createNewConversation(_partnerUserId, text)
+{
+	var deferred = Q.defer();
+	if (!_partnerUserId || text.length == 0)
+	{
+		deferred.reject({message: "Invalid partnerId or text"});
 	}
 	else
 	{
 		var currentUser = Ti.App.Properties.getObject('parseUser');
-		webService.createConversation({createdByUserWithId:currentUser.objectId, partnerUserWithId: _partnerUserId}).then(function(result){
-			Alloy.Globals.conversationCenter.conversations.push(result);
+		webService.createConversation({createdByUserWithId:currentUser.objectId, partnerUserWithId: _partnerUserId}).then(function(conversation){
+			Alloy.Globals.conversationCenter.conversations.push(conversation);
 			/**
 			 * Sort by updatedAt
 			 */
-			deferred.resolve(result);
+			
+			Alloy.Globals.conversationCenter.messageStore[conversation.objectId] = {
+				hasNewMessage: false,
+				hasFetchedMessages: false,
+				messageList : []
+			};
+			
+			return [conversation, webService.addMessageToConversation({text: text, conversationId: conversation.objectId, fromUserWithId: currentUser.objectId})];
+	
+		}).spread(function(conversation, message){
+			
+			Alloy.Globals.conversationCenter.messageStore[conversation.objectId].messageList.push(message);
+			
+			
+			deferred.resolve({
+				conversation: conversation,
+				message: message
+			});
+			
 		}, function(error){
+			
 			deferred.reject(error);
 		});
 	}
+	
+	return deferred.promise;
 }
 
 function isNewConversation(_userId)
@@ -198,6 +271,8 @@ function isNewConversation(_userId)
 }
 
 
+
 Alloy.Globals.conversationCenter.fetchConversations = fetchConversations;
-Alloy.Globals.conversationCenter.createConversation = createConversation;
+Alloy.Globals.conversationCenter.createNewConversation = createNewConversation;
+Alloy.Globals.conversationCenter.getMessagesInConversation = getMessagesInConversation;
 Alloy.Globals.conversationCenter.isNewConversation = isNewConversation;

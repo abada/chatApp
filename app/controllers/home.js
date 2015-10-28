@@ -1,11 +1,12 @@
 var args = arguments[0] || {};
-var webService = require("webService");
+var webService = require("webService");;
+var Q = require("q");
 var Map = require('ti.map');
 var geofencing = require("com.tentie.geofencing");
 var mapview;
 var region1 = {
-	latitude: 38.921495,
-	longitude: -77.021509,
+	latitude: 38.899618,
+	longitude: -77.027303,
 	title: "test",
 	radius: 50
 };
@@ -42,7 +43,10 @@ function checkPermission()
 		}
 	});
 }
-
+/**
+ * Engineering Long/Lat = {latitude: 38.921495,
+		longitude: -77.021509}
+ */
 
 
 
@@ -50,9 +54,10 @@ function checkPermission()
 function initialize()
 {
 	
+	
 	var howardManor = Map.createAnnotation({
-	    latitude: 38.921495,
-		longitude: -77.021509,
+	    latitude: 38.899618,
+		longitude: -77.027303,
 	    title:"Howard Manor",
 	    pincolor:Map.ANNOTATION_RED,
 	    myid:1 // Custom property to uniquely identify this annotation.
@@ -60,7 +65,8 @@ function initialize()
 	
 	mapview = Map.createView({
 	    mapType: Map.HYBRID_TYPE,
-	    region: {latitude: 38.921495, longitude: -77.021509},
+	    region: {latitude: 38.899618,
+		longitude: -77.027303},
 	    animate:true,
 	    regionFit:true,
 	    userLocation:true,
@@ -69,14 +75,16 @@ function initialize()
 	});
 	
 	var circle = Map.createCircle({
-	    center: { latitude: 38.921495, longitude: -77.021509},
+	    center: { latitude: 38.899618,
+		longitude: -77.027303},
 	    radius: 50, //1km
 	    fillColor: "#80FF0000",
 	    strokeWidth: 2,
 	    strokeColor: "#80FF0000"
 	});
 	var circle1 = Map.createCircle({
-	    center: { latitude: 38.925609, longitude: -77.022353},
+	    center: { latitude: 38.899618,
+		longitude: -77.027303},
 	    radius: 50, //1km
 	    fillColor: "#80d3d3d3",
 	    strokeWidth: 2,
@@ -84,7 +92,8 @@ function initialize()
 	});
 	
 	var circle2 = Map.createCircle({
-	    center: { latitude: 38.925609, longitude: -77.022353},
+	    center: { latitude: 38.899618,
+		longitude: -77.027303},
 	    radius: 35, //1km
 	    fillColor: "#80ADD8E6",
 	    strokeWidth: 2,
@@ -116,40 +125,45 @@ function getUsersInCurrentRegion(region)
 {
 	var webService = require("webService");
 	webService.getUsersInRegion(region).then(function(data){
-		var listViewItems = [];
-		try{
-				data.forEach(function(user){
-				var name = user.nickName;
-				var  image = user.profilePictureUrl;
-				
-				var item = {
-					properties :{
-						data:  user
-					},
-					imageView: {
-						image:image
-					},
-					nickNameLabel:{
-						text: name
-					}
-				};
-				
-			 listViewItems.push(item);
-				
-			});
-			
-			$.listSection.insertItemsAt(0, listViewItems);
-		}
-		catch(error)
-		{
-			console.log("Error adding items" + JSON.stringify(error));
-		}
+		
 		
 		
 	}, function(error){
 		console.log(error);
 	});
 
+}
+
+function insertUsersIntoListView(data)
+{
+	var listViewItems = [];
+	try{
+			data.forEach(function(user){
+			var name = user.nickName;
+			var  image = user.profilePictureUrl;
+			
+			var item = {
+				properties :{
+					data:  user
+				},
+				imageView: {
+					image:image
+				},
+				nickNameLabel:{
+					text: name
+				}
+			};
+			
+		 listViewItems.push(item);
+			
+		});
+		
+		$.listSection.insertItemsAt(0, listViewItems);
+	}
+	catch(error)
+	{
+		console.log("Error adding items" + JSON.stringify(error));
+	}
 }
 
 
@@ -170,12 +184,22 @@ function regionMonitorCallback(e)
 		//$.usersViewContainer.visible = true;
 		//getUsersInCurrentRegion(e.identifier);
 		
+		Q.spread([webService.getUsersInRegion(e.identifier), Alloy.Globals.conversationCenter.fetchConversations(false)], function(users, conversations){
+			//console.log(conversations);
+			insertUsersIntoListView(users);
+			$.usersViewContainer.visible = true;
+			//console.log(Alloy.Globals.conversationCenter.messageStore);
+		});
 		
+	
+		
+		/*
 		Alloy.Globals.conversationCenter.fetchConversations(false).then(function(result){
 			console.log(result);
 		}, function(error){
 			console.log(error);
 		});
+		*/
 		
 		
 	}
@@ -252,7 +276,7 @@ function didClickListItem(e)
 	Alloy.Globals.openWindow({
 		name: "profileView",
 		arguments: {
-			data: item,
+			user: item.properties.data,
 			image: item.imageView.image, name: item.nickNameLabel.text
 		},
 		navBarTitle: "Profile",

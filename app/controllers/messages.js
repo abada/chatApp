@@ -21,7 +21,7 @@ function initialize()
 	$.textArea._hintText = $.textArea.value;
 	$.textArea.addEventListener('focus', textAreaFocus);
 	$.textArea.addEventListener('blur', textAreaBlur);
-
+	$.sendButton.addEventListener("click", sendMessage);
 
 }
 
@@ -109,6 +109,33 @@ function textAreaBlur(e)
 }
 
 
+
+
+function sendMessage()
+{
+	//TODO: Check for network
+	var text = $.textArea.value;
+	if (text.length == 0)
+	{
+		return;
+	}
+	
+	if (args.isNewMessage)
+	{
+		console.log("New message");
+		Alloy.Globals.conversationCenter.createNewConversation(args.partner.objectId, text).then(function(result){
+			console.log(result);
+		});
+		console.log("New message");
+	}
+	else
+	{
+		console.log("Not new message");
+	}
+}
+
+/*
+
 var data = [{style: "incoming", text: "This is a sample message"},
             {style: "outgoing", text: "This is a really long text that is supposed to cover a lot of space"},
             {style: "incoming", text: "O boy how you dey now"}, {style: "outgoing", text: "Chale I dey manage my guy "},  {style: "incoming", text: "O boy how you dey now"}, {style: "outgoing", text: "Chale I dey manage my guy "},  {style: "incoming", text: "O boy how you dey now"}, {style: "outgoing", text: "Chale I dey manage my guy "}];
@@ -134,24 +161,26 @@ for (var index in data)
 }
 
 $.tableView.data = tableData;
+
+*/
+
+
 scrollToBottom();
 
 
 function scrollToBottom()
 {
     var section =  $.tableView.sections[0];
-    var rows = section.rowCount;
-    if (rows > 0)
+    if (section)
     {
-    	$.tableView.scrollToIndex(rows-1);
-
+    	var rows = section.rowCount;
+	    if (rows > 0)
+	    {
+	    	$.tableView.scrollToIndex(rows-1);
+	
+	    }
     }
+    
 }
 
-/*
-setTimeout(function(){
-	$.textArea.focus();
-}, 1000);
-*/
-// The textarea will change in size, because it’s multi-line.
-// I need to update the correct offset for the panning.
+
