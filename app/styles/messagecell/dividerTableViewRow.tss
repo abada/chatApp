@@ -1,0 +1,5 @@
+"#row":{
+	width: Titanium.UI.FILL,
+	height: Titanium.UI.SIZE,
+	selectionStyle: "none",
+}

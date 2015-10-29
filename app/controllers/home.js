@@ -5,8 +5,7 @@ var Map = require('ti.map');
 var geofencing = require("com.tentie.geofencing");
 var mapview;
 var region1 = {
-	latitude: 38.899618,
-	longitude: -77.027303,
+	latitude:38.925609, longitude: -77.022353,
 	title: "test",
 	radius: 50
 };
@@ -46,6 +45,9 @@ function checkPermission()
 /**
  * Engineering Long/Lat = {latitude: 38.921495,
 		longitude: -77.021509}
+		
+		
+	Howard Manor = {latitude:38.925609, longitude: -77.022353}
  */
 
 
@@ -56,8 +58,7 @@ function initialize()
 	
 	
 	var howardManor = Map.createAnnotation({
-	    latitude: 38.899618,
-		longitude: -77.027303,
+	    latitude:38.925609, longitude: -77.022353,
 	    title:"Howard Manor",
 	    pincolor:Map.ANNOTATION_RED,
 	    myid:1 // Custom property to uniquely identify this annotation.
@@ -65,8 +66,7 @@ function initialize()
 	
 	mapview = Map.createView({
 	    mapType: Map.HYBRID_TYPE,
-	    region: {latitude: 38.899618,
-		longitude: -77.027303},
+	    region: {latitude:38.925609, longitude: -77.022353},
 	    animate:true,
 	    regionFit:true,
 	    userLocation:true,
@@ -75,8 +75,7 @@ function initialize()
 	});
 	
 	var circle = Map.createCircle({
-	    center: { latitude: 38.899618,
-		longitude: -77.027303},
+	    center: { latitude:38.925609, longitude: -77.022353},
 	    radius: 50, //1km
 	    fillColor: "#80FF0000",
 	    strokeWidth: 2,

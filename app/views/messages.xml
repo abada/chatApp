@@ -2,11 +2,14 @@
 	<View id="rootView" class="container">
 		<View id="messageViewContainer">
 			<View id="mainView" class="mainView">
-				<TableView id="tableView" class="messagesTableView">
+				<TableView id="tableView" class="messagesTableView" visible="true">
 					<FooterView>
 						<View height="15"></View>
 					</FooterView>
 				</TableView>
+				<ScrollView id="scrollView" width="FILL" height="FILL" contentHeight="auto"  backgroundColor= "#E6E6E6" layout="vertical" visible="false">
+					<View id="messageContainer" height="SIZE" layout="vertical" borderWidth="1"></View>
+				</ScrollView>
 			</View>
 			<View id="textAreaContainer">
 				<TextArea id="textArea"></TextArea>

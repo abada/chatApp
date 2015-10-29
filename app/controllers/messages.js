@@ -1,10 +1,16 @@
 var args = arguments[0] || {};
+var conversationId = args.conversationId;
 var maxTypingHeight = 120;
 if (maxTypingHeight && Math.abs(+maxTypingHeight) < 1) {
     maxTypingHeight = Ti.Platform.displayCaps.platformHeight * +maxTypingHeight;
 }
+var geofencing = require("com.tentie.geofencing");
 var resizeThreshold = 0;
 var last = 0;
+var conversation = args.conversation;
+var currentUser = Ti.App.Properties.getObject('parseUser');
+var POP = require("guy.mcdooooo.tipop");
+
 
 initialize();
 function initialize()
@@ -13,6 +19,7 @@ function initialize()
 	$.textAreaContainer.addEventListener('postlayout', function (event) {
 		$.messageViewContainer.keyboardTriggerOffset = event.source.rect.height;
 		$.tableView.bottom = event.source.rect.height;
+		$.messageContainer.bottom = event.source.rect.height;
 	});
 	
 	$.messageViewContainer.addEventListener('keyboardchange', keyboardchange);
@@ -22,9 +29,53 @@ function initialize()
 	$.textArea.addEventListener('focus', textAreaFocus);
 	$.textArea.addEventListener('blur', textAreaBlur);
 	$.sendButton.addEventListener("click", sendMessage);
-
+	
+	console.log(JSON.stringify($.tableView.rect));
+	if (conversation != null || conversation != undefined)
+	{
+		
+		var preloader = Alloy.createWidget("preloader", {
+		    delay : 200, //milliseconds delay || default 100
+		    dots : 4, //Number of dots to display || default 3
+		    color : {
+		        on : "#FFF488", // Switch color
+		        off : "#E6E6E6",
+		        random : false // Default false || if true then random color 
+		    },
+		    text : "Fetching messages" // Default text loading
+		});
+		preloader.start();
+		//TODO Add loading mask here
+		Alloy.Globals.conversationCenter.getMessagesInConversation(conversation.objectId).then(function(messages){
+			var data = [];
+			messages.forEach(function(message){
+				console.log(message.fromUser.objectId);
+				var rowCtrl;
+				if (message.fromUser.objectId == currentUser.objectId)
+				{
+				
+					console.log("appending");
+					 rowCtrl = Alloy.createController("messagecell/outgoingTableViewRow", {text: message.text});
+					 var row = rowCtrl.getView();
+					 data.push(row);
+				}
+			});
+			$.tableView.data = data;
+			preloader.stop();			
+			
+		}, function(error){
+			preloader.stop();	
+			console.log(error);
+		});
+	}
+	
 }
 
+
+function getMessages()
+{
+	
+}
 /*
 exports.preShow = function()
 {
@@ -52,8 +103,33 @@ exports.postShow = function()
 	}, 800);
 };
 
+
+geofencing.addEventListener("keyboardWillShow", function(e){
+	console.log("Keyboard will show, with height=" + e.keyboardHeight);
+	 //$.tableView.top = e.keyboardHeight;
+	 
+	 $.tableView.animate({
+	 	top: e.keyboardHeight,
+	 	duration: 500,
+	 	curve: Titanium.UI.ANIMATION_CURVE_EASE_IN
+	 });
+});
+
+geofencing.addEventListener("keyboardWillHide", function(e){
+	console.log("Keyboard will show, with height=" + e.keyboardHeight);
+	// $.tableView.top = 0;
+	
+	 $.tableView.animate({
+	 	top: 0,
+	 	duration: 500,
+	 	curve: Titanium.UI.ANIMATION_CURVE_EASE_IN
+	 });
+});
+
+
 function keyboardchange(event)
 {
+	console.log("Height is " +  event.height);
 	var next = event.height ? ($.messageViewContainer.rect.height - event.y) : 0;
 	var delta = Math.abs(next - last);
 	var transform = Ti.UI.create2DMatrix().translate(0, -next);
@@ -64,12 +140,16 @@ function keyboardchange(event)
 			duration: 300,
 			transform: transform
 		});
+		
 	}
 	else if (delta > 0) {
 		$.textAreaContainer.transform = transform;
+		//$.tableView.top = "0dp";
 	}
 
 	last = next;
+	
+	
 }
 
 
@@ -120,52 +200,69 @@ function sendMessage()
 		return;
 	}
 	
-	if (args.isNewMessage)
+	if (conversation == null || conversation == undefined)
 	{
-		console.log("New message");
 		Alloy.Globals.conversationCenter.createNewConversation(args.partner.objectId, text).then(function(result){
-			console.log(result);
-		});
-		console.log("New message");
+			//console.log(result);
+			conversation = result.conversation;	
+			appendNewRow(text, "out", true);
+			
+		}, handleError);
 	}
 	else
 	{
-		console.log("Not new message");
+		Alloy.Globals.conversationCenter.addMessageToConversation(conversation.objectId, text).then(function(result){
+			console.log(result);
+			appendNewRow(text, "out", true);
+			
+			
+		}, handleError);
+	}
+	
+	
+	function handleError(error)
+	{
+		console.log("Error adding message: " + JSON.stringify(error));
 	}
 }
 
-/*
-
-var data = [{style: "incoming", text: "This is a sample message"},
-            {style: "outgoing", text: "This is a really long text that is supposed to cover a lot of space"},
-            {style: "incoming", text: "O boy how you dey now"}, {style: "outgoing", text: "Chale I dey manage my guy "},  {style: "incoming", text: "O boy how you dey now"}, {style: "outgoing", text: "Chale I dey manage my guy "},  {style: "incoming", text: "O boy how you dey now"}, {style: "outgoing", text: "Chale I dey manage my guy "}];
-var tableData = [];
 
 
-for (var index in data)
+
+
+
+
+function adjustTableViewHeight()
 {
-    var messageData = data[index];
-    var row;
-    if (messageData.style == "incoming")
-    {
-  	  	  row = Alloy.createController("messagecell/incomingTableViewRow", {text: messageData.text}).getView();
-    }
-    
-    else
-    {
-  	  	  row = Alloy.createController("messagecell/outgoingTableViewRow", {text: messageData.text}).getView();
-        
-    }
-    
-    tableData.push(row);
+	//$.tableView.height = $.tableView.data[0].rows.length * $.tableView.data[0].rows[0].size.height;
 }
 
-$.tableView.data = tableData;
+replacePreviousView();
 
-*/
+function replacePreviousView()
+{
+	var count = Alloy.Globals.pageFlow.countPages();
+	console.log("Page count is currently");
+	console.log(count);
+}
 
 
-scrollToBottom();
+
+function appendNewRow(text, style, animate)
+{
+	var rowCtrl  = null;
+	if (style == "out")
+	{
+		rowCtrl = Alloy.createController("messagecell/outgoingTableViewRow", {text: text});
+		var row = rowCtrl.getView();
+		
+		$.tableView.appendRow(row, {
+			animated: true,
+			animationStyle: Titanium.UI.iPhone.RowAnimationStyle.RIGHT
+		});	
+	}
+	
+}
 
 
 function scrollToBottom()

@@ -1,6 +1,9 @@
 var args = arguments[0] || {};
 
 
+
+
+
 var UIBlurView = require('com.artanisdesign.uivisualeffect');
 var proxy2 = UIBlurView.createView({
     effect : "light", //extralight, dark
@@ -34,26 +37,13 @@ $.messageButton.addEventListener("click", showMessageView);
 
 function showMessageView()
 {
-	
-	var isNewMessage;
-	var conversationId = null;
-	if (Alloy.Globals.conversationCenter.isNewConversation(args.user.objectId))
-	{
-		isNewMessage = true;
-		console.log("New message");
-	}
-	else
-	{
-		isNewMessage = false;
-		console.log("Not new message");
-	}
-	
+	var check = Alloy.Globals.conversationCenter.isNewConversation(args.user.objectId);
 	
 	Alloy.Globals.openWindow({
 		name: "messages",
 		arguments: {
 			partner: args.user,
-			isNewMessage: isNewMessage
+			conversation: check.conversation
 		},
 		navBarTitle: "Messages",
 		left :{

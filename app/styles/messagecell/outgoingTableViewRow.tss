@@ -4,7 +4,8 @@
 	width: Titanium.UI.FILL,
 	height: Titanium.UI.SIZE,
 	selectionStyle: "none",
-	layout: "vertical"
+	layout: "vertical",
+	bottom: 7
 }
 ".outgoing":{
 	width: 15,
@@ -30,6 +31,11 @@
 	height: Titanium.UI.SIZE,
 	layout: "horizontal",
 	right: 10
+}
+
+"#wrapper":{
+	//left : Alloy.Globals.Device.width,
+	width: Alloy.Globals.Device.width
 }
 
 "#labelContainer":{

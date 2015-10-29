@@ -71,17 +71,18 @@
         <theme>default</theme>
     </mobileweb>
     <modules>
-        <module platform="iphone">ti.map</module>
-        <module platform="iphone">ti.imagefactory</module>
-        <module platform="iphone">facebook</module>
-        <module platform="iphone">ti.coremotion</module>
-        <module platform="iphone">de.marcelpociot.collectionview</module>
-        <module platform="iphone">it.smc.dakeyboardcontrol</module>
-        <module platform="iphone">com.apaladini.blur</module>
-        <module platform="iphone">hl.fxblurview</module>
-        <module platform="iphone">com.artanisdesign.uivisualeffect</module>
-        <module platform="iphone" version="1.0.1">com.tentie.geofencing</module>
-    </modules>
+    <module platform="iphone">ti.map</module>
+    <module platform="iphone">ti.imagefactory</module>
+    <module platform="iphone">facebook</module>
+    <module platform="iphone">ti.coremotion</module>
+    <module platform="iphone">de.marcelpociot.collectionview</module>
+    <module platform="iphone">it.smc.dakeyboardcontrol</module>
+    <module platform="iphone">com.apaladini.blur</module>
+    <module platform="iphone">hl.fxblurview</module>
+    <module platform="iphone">com.artanisdesign.uivisualeffect</module>
+    <module platform="iphone" version="1.0.1">com.tentie.geofencing</module>
+    <module platform="iphone" version="1.0.5">guy.mcdooooo.tipop</module>
+  </modules>
     <deployment-targets>
         <target device="android">false</target>
         <target device="ipad">false</target>

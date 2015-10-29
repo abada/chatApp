@@ -25,7 +25,7 @@
    	bottom:  0,
     backgroundColor: "#E6E6E6",
     width: Ti.UI.FILL,
-	height: Ti.UI.SIZE,
+	height: Ti.UI.FILL,
 	borderColor: "blue",
 	borderWidth: 1,
 }
@@ -35,7 +35,7 @@
 	backgroundColor: '#fff',
 	
 		// How much space must be took on top of the keyboard
-		keyboardTriggerOffset: 10,
+		//keyboardTriggerOffset: 10,
 		// This activates the panning feature
 		keyboardPanning: true
 }

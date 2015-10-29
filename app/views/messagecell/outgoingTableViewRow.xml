@@ -7,6 +7,5 @@
 			</View>	
 			<Button id="imageButton" class="outgoing"></Button>
 		</View>
-		<View class="padding"></View>
 	</TableViewRow>
 </Alloy>

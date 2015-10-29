@@ -7,6 +7,5 @@
 				<Label id= "textLabel" width="auto" height="auto"></Label>
 			</View>	
 		</View>
-		<View class="padding"></View>
 	</TableViewRow>
 </Alloy>

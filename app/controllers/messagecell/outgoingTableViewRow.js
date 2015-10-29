@@ -16,4 +16,18 @@ function init()
 			$.imageButton.top = 13;
 		}
 	});
+	//$.viewContainer.left  = Alloy.Globals.Device.width;
 }
+
+
+function animateEntry()
+{
+	
+	var animation = Ti.UI.createAnimation();
+	animation.left = 0;
+	animation.duration = 3000;
+	animation.curve = Titanium.UI.ANIMATION_CURVE_EASE_IN;
+	//$.wrapper.animate(animation);
+}
+
+exports.animateEntry = animateEntry;
